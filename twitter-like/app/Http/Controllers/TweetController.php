@@ -35,8 +35,7 @@ class TweetController extends Controller
         Tweet::create($data);
 
         return redirect('/');
-
-
+    
     }
 
     /**

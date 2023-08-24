@@ -67,9 +67,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Where We Stop in Tutorial Video
 
-Around 40 minutes
-
-Solve the error:
-
-SQLSTATE[HY000]: General error: 1364 Field 'body' doesn't have a default value
+Around 42 minutes
 
