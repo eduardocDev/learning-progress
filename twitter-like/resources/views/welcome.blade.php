@@ -22,7 +22,7 @@
                 
             @csrf
                 
-                <input class="input is-medium mb-2" type="text" name="tweet" placeholder="Tweet Here">
+                <input class="input is-medium mb-2" type="text" name="body" placeholder="Tweet Here">
                 
                 
                 <button class="button is-link" type="submit">Tweet</button>
@@ -41,7 +41,7 @@
                 <p>
                   <strong>Eduardo Santiago</strong> <small>@Eduardo</small>
                   <br>
-                    <div>{{$tweet->body}}</div>
+                    <div> <strong>{{$tweet->body}}</strong> {{$tweet->created_at}}</div>
                 </p>
               </div>
           </article>

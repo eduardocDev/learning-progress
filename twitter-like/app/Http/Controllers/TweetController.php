@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tweet;
+use App\Models\Tweet;
 use Illuminate\Http\Request;
 
 class TweetController extends Controller
@@ -31,10 +31,11 @@ class TweetController extends Controller
     {
         
         $data = $request->all();
-
+        
         Tweet::create($data);
 
         return redirect('/');
+
 
     }
 

@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tweet extends Model
 {
-    use HasFactory;
-
-    public $fillable = ['body'];
+    protected $table = 'tweets';
+    protected $fillable = [
+        'body',
+        'created_at'
+    ];
 }
