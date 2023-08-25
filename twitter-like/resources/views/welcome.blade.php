@@ -17,6 +17,9 @@
     </div>
 
     <div class="container p-6">
+
+    
+
         {{-- form to create a tweet --}}
 
         <div>
@@ -33,10 +36,11 @@
             </form>
         </div>
 
-        {{-- list all yourt tweers --}}
+        {{-- list all your tweets --}}
 
         <div>
             @foreach ($tweets as $tweet)
+
                 <article class="media">
                     <div class="media-content">
                         <div class="content">
@@ -55,6 +59,7 @@
                 </article>
             @endforeach
         </div>
+
     </div>
 </body>
 

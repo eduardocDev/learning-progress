@@ -67,5 +67,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Where We Stop in Tutorial Video
 
-Around 42 minutes
+You can put some diferent things!!
+
+Before the 49 min
+
 

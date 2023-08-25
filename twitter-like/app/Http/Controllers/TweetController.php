@@ -32,12 +32,12 @@ class TweetController extends Controller
         $data = $request->all();
 
         if (is_null($data['body'])) {
-            return redirect('/');
+            return redirect('tweets');
         }
 
         Tweet::create($data);
 
-        return redirect('/');
+        return redirect('tweets');
     }
 
     /**
@@ -76,6 +76,6 @@ class TweetController extends Controller
     {
         $tweet->delete();
 
-        return redirect('/');
+        return redirect('tweets');
     }
 }
