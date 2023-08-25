@@ -29,13 +29,15 @@ class TweetController extends Controller
      */
     public function store(Request $request)
     {
-        
         $data = $request->all();
-        
+
+        if (is_null($data['body'])) {
+            return redirect('/');
+        }
+
         Tweet::create($data);
 
         return redirect('/');
-    
     }
 
     /**
