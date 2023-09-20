@@ -650,12 +650,281 @@ Session security is a critical aspect of web application security , as it involv
 
 Database Interaction:
 Connect to databases using PHP (e.g., MySQL, PostgreSQL).
+To connect to a database using PHP, you can use PDO (PHP DATA OBJECTS) extension o the mysqli extension. Both of these options provide methods for establishing database connection and execute SQL queries. Here's a basic overview of how to connect to a Mysql database using mysqli.
+
+1 . Enable mysqli extension : ensure that the mysqli extension is enabled in your PHP configuration.
+
+2 . Establish a connection: 
+
+	$mysqli = new mysqli(“localhost”, “username”, “password”, “mydatabase”);
+	
+	Id ($mysqli -> connect_error){
+		Die (“connection failed: “. $mysqli -> connection);
+	}
+
+Replace ‘localhost’, ‘mydatabase’, ‘username’ and ‘password’ with your MySQL server details.
+
+3 . Perform Database Operations
+
+Use the `$mysqli`object to execute SQL queries and fetch results.
+
+4 . Close the connection:
+
+Always close the database connection when you’re done using it to free up resources.
+
+$mysqli -> close(); 
+
 Execute SQL queries and fetch results.
+
+To execute SQL queries and fetch resuylts using the mysqli extension in PHP, you can follow the example below. THis example demonstrates how to connect to a MySQL database, execute a SELECT query, and retrieve the results:
+
+	In this example:
+
+<?php
+// Database connection parameters
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database_name";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// SQL query
+$sql = "SELECT id, username, email FROM users";
+
+// Execute the query
+$result = $conn->query($sql);
+
+// Check if the query was successful
+if ($result === false) {
+    echo "Error: " . $conn->error;
+} else {
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "ID: " . $row["id"] . "<br>";
+            echo "Username: " . $row["username"] . "<br>";
+            echo "Email: " . $row["email"] . "<br><br>";
+        }
+    } else {
+        echo "No results found.";
+    }
+}
+
+// Close the connection
+$conn->close();
+?>
+
+1 . Replace `”localhost”`,`”your_username”`,`”your_password”` and `”your_database_name”` with your database connection details.
+
+2 . The `mysqli` class is used to establish a connection to the MySQL database.
+
+3 . An SQL query is defined in the `$sql` variable.
+
+4 . The `query()`method is used to execute the SQL query.
+
+5 . If the query is successful, the results are fetched using the `fetch_assoc()`method, and the data displayed.
+
+6 . Finally, the connection is closed using the `close()`method.
+
+Make sure to customize the SQL query and database connection parameters to fit your specific use case. 
+
 Study prepared statements for database security.
+Prepared statements in mysqli are used to execute SQL queries securely by separating SQL code from user input. Here’s how to use prepared statements for database security with mysqli in PHP.
+
+1 . Database Connection
+
+First, establish a database connection using mysqli.
+
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database_name";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+2  . Prepare the SQL Statement:
+
+Prepare an SQL statement with placeholders for user input.
+
+$stmt = $conn->prepare("INSERT INTO users (username, email) VALUES (?, ?)");
+
+In this example, `?`is used as a placeholder for the values to be inserted into the `users` table.
+
+3 . Binding Parameters:
+
+Bind parameters to the placeholders using `bind_param()`. This step ensures that user input is treated as data and not executable code.
+
+$username = "john_doe";
+$email = "john@example.com";
+
+$stmt->bind_param("ss", $username, $email);
+
+The `"ss”`argument specifies the data types of the parameters (in this casem both are strings).
+
+4 . Execute the Prepared Statement:
+
+Execute the prepared statement using `execute()`.
+
+If ($stmt->execute()){
+	echo “New record inserted successfully”;
+}else{
+	echo “Error: “. $stmt->error;
+}
+
+Check if the execution was successful. If an error occurs, it can be accessed via `$stmt->error`.
+
+5. Close the Connection:
+
+Always close the database connection when you’re done using it.
+
+$conn->close();
+
+By following the steps, you can securely execute SQL queries with user input using prepared statements in mysqli, which helps protect your application against SQL injection attacks.
+
 Object-Oriented PHP:
 Learn about classes and objects.
+In PHP, classes and objects are fundamental concepts of object-oriented programming (OOP). They allow you to create a reusable and organized code by encapsulating data and behavior into objects . Here’s a comprehensive guide to classes and objects in PHP:
+
+1 . Classes declaration:
+
+A class is a blueprint or a template for creating objects to declare a class, use the `class` keyword followed by the class name Class names should start with a letter or underscores and contain letters number, or underscores.
+
+2. Object creation.
+
+To create an object from a class use `new` keyword followed by the class name , and optimally provide any required parameters by the class constructors:
+
+Class is a template for an object and object is a template for a class. 
+
+->Variables in a class are called properties 
+->Functions in a class are called methods
+
+Difference between properties and variables is in a property you need to state on the access level already a three access level, public, private and protected. 
+
+Public -> this property can be accessed by anywhere.
+Protected -> this property can only be accessed by the class, and any classes that extend this class. And 
+Private -> only can be accessed by the class.
+
+Object is just a variable!!
+
+Constructors -> construct will automatically be called when you create an object using this class.
+
+3. Assessing Properties and Methods:
+
+You can access properties and methods of a object using the arrow (`->`) operator:
+
+4. Constructor:
+
+The `__construct()` method is a special method called when an object is created . it’s used to initialize object properties to perform setup tasks.
+
+5. Class inheritance:
+
+Inheritance allows you to create a new class (child class) based on an existing class who inherited  properties and methods from the parent class. You can extend a class using the `extends` keyword:
+
+6. Access modifiers:
+
+PHP supports three access modifiers for properties and methods: `public`, `private` and `protected`.
+
+`public`: can be accessed from anywhere (inside or outside the class).
+`private`: can only be accessed within the class and its child classes.
+`protected`: can be accessed within the class and its child classes.
+
+7. Getter and Setter methods:
+
+To control access to properties ,  it’s common to use getter and setter methods. Getter methods retrieve property values, and setter methods set properties values.
+
+8. Static Methods and Properties: 
+
+Static methods and properties belong to the class itself, rather than inheritance of the class they are accessed using the `::` operator.
+
+9. Constants:
+
+Constants are class specific values that cannot be changed after they are defined . They are declared using the `const` keyword.
+
+10. Magic Methods:
+
+PHP provides a set of specific methods, known as magic methods, that are called automatically in response to certain events or actions; for example, `__toString()` is called when an object is used as a string.
+
+11. Object Closing:
+
+You can create a copy of an object using the `clone` keyword.
+
+12. Destructor:
+
+The `__destruct()` method is a special method called when an object is destroyed or goes out of scope , It can be used to perform cleanup tasks.
+
+Classes and objects are a fundamental part of PHP’s object-oriented programming capabilities, allowing you to write more organized, maintainable, and reusable code. They are widely used in PHP frameworks and libraries to create powerful and scalable applications.
+
 Study inheritance, encapsulation, and polymorphism.
+In Object -Oriented programming (OOP), inheritance, encapsulation, and polymorphism are three fundamental concepts that help structure and organize code Here’s an explanation of each concept:
+
+1. Inheritance:
+
+Inheritance is a mechanism that allows one class (the child or subclass) to inherit properties and behaviors (methods and properties) from another class (The parent or superclass).
+This means that you can create a new class based on an existing class inheriting attributes and methods while also adding or modifying them. 
+
+Key point about inheritance:
+
+Parent - Child Relationship: inheritance establishes a relationship between classes where the child class inherits the characteristics of the parent class.
+Code Reusability: It promotes code reusability because you can create new classes by extending existing ones, reducing redundant code.
+Single Inheritance: In most OOP languages , a class can inherit from only one parent class (single inheritance). Multiple inheritance, where a class inherits from multiple parents, is supported in some languages but can be complex.
+
+2. Encapsulation:
+
+Encapsulation is the practice of bundling the data (properties) and methods (functions) that operate on the data into a single unit called a class. It also involves controlling access to the data by specifying access modifiers like public, private and protected.
+
+Key points about encapsulation:
+
+Data Hiding: encapsulation hides the internal details of an object from the outside world. This means that the object’s data can only be accessed and modified through well-defined methods (getters and setters), which ensures data integrity.
+Access Modifiers: Access modifiers like `public`, `private` and `protected` control the visibility and accessibility of class members (Properties and methods).
+Information Hiding: Encapsulation allows you to hide the implementation details of a class, making it easier to change the intended workings of a class without affecting other parts of the code that use the class.
+
+3 . Polymorphism
+
+Polymorphism is the ability of different objects or classes to respond to some method or message in their own unique way. It allows you to write more flexible and reusable code by treating objects of different classes in a uniform manner.
+
+Key points about polymorphism:
+
+Method overloading: polymorphism can be achieved through method overloading, where multiple methods with the same name exist in the same class but have different parameter lists.
+Method overriding: polymorphism can also be achieved through method overriding, where a child class provides a specific implementation of a method defined in its parent class.
+Dynamic Binding: in polymorphism, the method to be executed is determined at runtime (dynamic binding), depending on the actual type of the object, retcher than at compile time.
+
+→Here’s simple analogy to understand these concepts:
+
+Inheritance is like inheritance traits from your parents, where you share certain characteristics with them but also have unique attributes 
+encapsulation is like the packing of a product, You hide internal components and provide a well-defined interface (like a user manuals for interaction.
+Polymorphism is like a universal remote control; It can be used to operate different devices (TV, DVD player,  Sound System) with the same set of buttons, even though each device responds differently to those buttons.
+Together, these three concepts form the foundation of object-oriented programming and enable developers to create organized, maintainable and flexible code.
+
 Understand constructors and destructors.
+Constructors:
+
+Purpose: constructors are special methods used to initialize objects when they are created from a class.
+Initialization: They set up the initial state of an object , including assigning values to properties and performing any necessary setup tasks.
+Automatic Invocation: Constructors are authentically called when an object is instantiated from a class.
+Naming: in PHP, constructors are typically named `__construct()` within the class.
+
+
+Destructors
+
+Purpose: Destructuors are special methods used for cleanup tasks just before an object is destroyed or goes out of scope.
+Cleanup: They are used to release resources, close connections or perform any cleanup options that are necessary before an object is removed from memory.
+Automatic invocation: Destructors are automatically called when an object is destroyed either explicitly or when the script terminates.
+Naming: in PHP, destructors are typically named `__destruct()` within the class.
+
+Constructors and destructors are essential for proper object lifecycle management, ensuring that objects are correctly initialized and resources that objects are correctly initialized and resources are released when they are me longer needed.
+
+
 Error Handling and Debugging:
 Learn about error types and how to handle them.
 Use debugging tools and techniques (e.g., var_dump, error logs).
