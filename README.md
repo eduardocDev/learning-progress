@@ -14,7 +14,7 @@ This part of code will use echo, echo is a language construct used in php to out
 
 This will directly put a string in a html using this short way to do echo. When you use only PHP code is preferable omit the PHP Closing Tag, at the end of file.
 
-<?php echo ‘this is work’;
+	<?php echo ‘this is work’;
 
 Learn about statements, variables, and data types in PHP.
 
@@ -22,7 +22,7 @@ Statements are individual lines or segments of code that instruct the PHP interp
 
 1.Assignment Statements: assign values to variables. 
 
-$name = “John”;
+	$name = “John”;
 
 2.Expression Statements: Evaluate an expression.
 
@@ -65,11 +65,11 @@ break;
 
 	Function add ($a, $b){
 		return $a + $b;
-}
+	}
 
-Public function getName(){
-	Return $this -> name;
-}
+	Public function getName(){
+		Return $this -> name;
+	}
 
 8.Break and Continue Statements: control the flow of loops.
 
@@ -95,18 +95,18 @@ In PHP, variables are used to store and manipulate data. Here are some key point
 
 1. Variable Declaration: Variables in PHP start with a dollar sign ($) followed by the variable name, Variables are case-sensitive and must begin with  a letter or underscore, followed by letters, numbers, or underscores.
 
-	$name = “Eduardo”;
-	$age = 21;
+		$name = “Eduardo”;
+		$age = 21;
 
 2. Data Types: PHP is loosely Typed, meaning you don’t need to declare the data type of a variable explicitly. PHP infers the data based on the value assigned to it common data types include: 
 
-	Integer = 21,	Float = 7.35,	String = “Hello World”,  Bollean = False/True
+		Integer = 21,	Float = 7.35,	String = “Hello World”,  Bollean = False/True
 
 3. Concatenation: You can concatenate (combine) strings and variables using the dot(.)operator.
 
-	$firstName = “Eduardo”;
-	$lastName = “Carmo”;
-	$fullName = $fistName.” “.$lastName
+		$firstName = “Eduardo”;
+		$lastName = “Carmo”;
+		$fullName = $fistName.” “.$lastName
 
 4. Variable Scope: PHP variables have different scopes, including global, local, static, and superglobal.
 Variables declared inside a  function are typically local, while those declared outside a function have global scope.
@@ -117,41 +117,41 @@ Variables declared inside a  function are typically local, while those declared 
 
 7. Variable Variables: PHP allows you to create variables dynamically using variable variables. This can be done by enclosing the variable name in double curly braces ‘${}’.
 	
-	$varName = “age”;
-	$$varName = 21; //creates a variable $age with the value 21
+		$varName = “age”;
+		$$varName = 21; //creates a variable $age with the value 21
 
 8. Constants: Constants are similar to variables  but cannot be changed once defined. They are defined using the `defined()`function or the `const`keyword.
-
-	define (“PI”,  3.14159);
-	Const SITE_NAME = “My Website”;
+	
+		define (“PI”,  3.14159);
+		Const SITE_NAME = “My Website”;
 
 9. Variable Functions: PHP allows you to treat function names as variables, enabling you to dynamically call functions.
-
-	$functionName = “myFunction”;
-	$result = $functionName(); //calls the function.
+	
+		$functionName = “myFunction”;
+		$result = $functionName(); //calls the function.
 
 Variables are a fundamental part of PHP programming, and understanding how to declare, assign, and manipulate them is essential for developing PHP applications.
 
 Types  in PHP: 
 
 Scalar Types
-
-Integer(‘int): Represents whole numbers.
-Float(‘float): Represents floating-point numbers (decimal numbers).
-String(`string`): Represents a sequence of characters.
-Boolean(`bool`): Represents true or false values.
+	
+	Integer(‘int): Represents whole numbers.
+	Float(‘float): Represents floating-point numbers (decimal numbers).
+	String(`string`): Represents a sequence of characters.
+	Boolean(`bool`): Represents true or false values.
 
 Compound Types
 
-Array(‘array’): Represents an ordered, map-like collection of values.
-Object (‘object’): Represents an instance of a user defined class.
-Callable(‘callable’): Represents a function or method that can be called.
-Resource(‘resource’): Represents an external resource (e.g., file, database connection).
-Iterable (‘iterable’): Represents something that can be integrated over (added in PHP 7.1).
+	Array(‘array’): Represents an ordered, map-like collection of values.
+	Object (‘object’): Represents an instance of a user defined class.
+	Callable(‘callable’): Represents a function or method that can be called.
+	Resource(‘resource’): Represents an external resource (e.g., file, database connection).
+	Iterable (‘iterable’): Represents something that can be integrated over (added in PHP 7.1).
 
 Special Types
 
-NULL(`null`): Represents the absence of a value
+	NULL(`null`): Represents the absence of a value
 
 Type Coercion and Juggling
 
@@ -166,34 +166,34 @@ Conditional statements (if, else, elseif) are fundamental constructs in PHP used
 
 1. `if` statement: The if statement is used to execute a block of code if a specified condition is true.
 	
-If ($condition){
-		//code to execute if $condition is true
-}
-
-Example:
-
-If ($account >= 1000000){
-	“You are millionaire”;
-}
+		If ($condition){
+				//code to execute if $condition is true
+		}
+		
+		Example:
+		
+		If ($account >= 1000000){
+			“You are millionaire”;
+		}
 
 2. `else` statement: The `else` statement is used in conjunction with `if` to specify an alternative block of code to execute when the ‘if’ condition is false.
-
-	If ($condition){
-		//code to execute if $condition is true
-	}else{
-		//code to execute if  $condition is false
-}
+	
+		If ($condition){
+			//code to execute if $condition is true
+		}else{
+			//code to execute if  $condition is false
+	}
 
 
 3. ‘Elseif’ statement: The ‘elseif’ statement allows you to specify multiple conditions to test sequentially. If the previous ‘If’ or ‘elseif’ condition is false, the next  condition is evaluated.
 
-	if($condition1){
-		//code to execute if $conditional1 is true
-	}elseif($condition2){
-		//code to execute if $conditional1 is false and $conditional 2 is true
-	}else{
-		//code to execute if  neither $condition1 and $condition2 is true
-	}
+		if($condition1){
+			//code to execute if $conditional1 is true
+		}elseif($condition2){
+			//code to execute if $conditional1 is false and $conditional 2 is true
+		}else{
+			//code to execute if  neither $condition1 and $condition2 is true
+		}
 
 
 
