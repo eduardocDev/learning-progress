@@ -1,0 +1,21 @@
+so part of my knowledge of bash will be registred here in this txt file, for consultante and improving of the knowledge:
+
+Basic commands.
+
+pwd - print working directory
+
+cd - change directory
+
+ls - list computer files
+
+mkdir - make directory 
+
+sudo - operete command as a super user
+
+chown - changer owner
+
+chmod - change the mode flags 
+
+cd .. - back directory
+
+
