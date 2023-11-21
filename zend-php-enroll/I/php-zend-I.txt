@@ -1,0 +1,131 @@
+PHP zend I
+
+PHP Development Environments
+
+Web Server - NGINX / APACHE - Works like a gateway between PHP and Client, using
+HTTP protocol.
+
+PHP - Interpreted, high level, dinamic typed language, with  Variables and constant
+case sensitive, while functions are not, now with a just in time compilation.
+
+DATABASE - Relation, multi-model ->MySQL and Relational->SQlite;
+
+CODE EDITOR - is good to have a Syntax Highlight, Auto-Completion, Version Control
+Integration, Extensibility, Cross-Plataform Compatibility, Debuggiong and Error
+Detection. you can use with all this elements the VSCode, vscode is free and very
+extensible because he haves a lot of plugings, the same is for the PHPStorm but
+hes is comercial, you need to paid to use, in free way but without all this freatures
+we have the Genie and VIM, Vim is more hardcore and don't have visual user interfece
+is command line oriented, for use this need a curve of learning but is good because
+he can be enbeded with a lot of plugins to take more easy the codding.
+
+ 
+Instaling PHP 
+
+Compiling from source code - you can see the source code in the 
+https://www.github.com/php/php-src you can access the branches to see old version
+and not released version of php to see how your application can operate with
+diferent versios of the languages. test in the new releases and run old app in old
+releases.
+
+Using the package managers - you can use the package manager to install the php
+into diferent OS (operational systems), using the comand of the current system to
+this. like sudo apt install php8.2-curl, in php we have php.ini file, occurred in 
+php files and another for web server files, one for command line, and another for
+web server usage.
+
+Intalling an AMPP Package
+
+AMPP originally stood for Apache, MySQL, and PHP+pearl. Now most AMP packages also
+include Python.
+
+XAMPP and AMPPS are both free, open-source, cross-plataform web servers widely used
+for local web application development.
+
+	*Can be installed on Windows, Linux or Mac
+	*Include the leatest version of PHP, Apache, MySQL.
+	*Each offers one-click installation and app managament.
+	*Both also provide:
+		*domain management
+		*database management
+		*enable/disable PHP extensions
+		*backup options
+	
+	https://xampp.com
+	https://www.apachefriends.org/index.html
+
+PHP Virtualization
+
+Virtualization is the process of creating and managing virtual versions of computing
+resources, such as operation systems, servers, storage, and networks.
+
+PHP virtualization is where you have a virtual host on which you've installed PHP
+(and possibly other components such as a web server and database).
+
+Popular virtualizattion technologias include
+
+	*VMWare
+	*Microsoft Hyper-V
+	*Oracle VirtualBox
+
+Virtualization vs, Containerization
+
+Virtualization and Containerization are two distinct approches to managing computing
+resources in IT infrastructure,
+
+Virtualization
+
+Refers to the process of creating and managing virtual instances of physical hardware
+such as Servers, Storage and networks, Virtualization is better for running multiple,
+diverse operation systems and applications on a single hardware plataform.
+
+Containerization
+
+Involves the encapsulation of an application and its dependenvies into a single, 
+portable unit called a container. Containers share the host operating system, making
+them lighter and faster than virtual machines. Containers are more suited for
+microservices architeture and rapid application deployment.
+
+PHP Containertization
+
+PHP containerization technologies include Docker, and cloud containers (e.g. Amazon
+Web Services, Google Cloud Plataform, or Microsoft Azure)
+
+Docker: and open-source plataform that simplifies the process of developing, deploying
+and managing applications by using containerization, enabling developers to package 
+applications and dependentices into a lightweight, portable containers.
+
+AWS Cloud Container: a software unit that packages applications and their dependencies
+, facilitationg deployment and management across Amazon Web Services infraestructure
+services, such as Amazon Elastic Container Service (ECS) and kubernetes.
+
+Both Microsoft Azure and Google Cloud Plataform offer cloud container services similar
+to that offered by Amazon. ZendPHP is available in all of these containerized env.
+
+Lab Setup:
+
+To set up the virtual machine (VM) needed for the php course labs, follow these 
+general steps:
+
+	1.Install Oracle VirtualBox
+	2.Install Hashicorp Vagrant
+	3.Use the Vagrantfile to build the course VirtualBox
+	4.Login to the new VM and update the existing software
+	_______________________________________________________
+
+To get you started, let's create a simple Hello World program using the Lab VM you
+just finished setting up.
+
+Once we create the program, we'll tun first from the command line, and then as a web
+page.
+
+Lab steps:
+
+	1.Setup the course VM
+	2.Login a the user "vagrant"
+	3.Using the code editor of your choice, create the Hello World program
+	4.Run the program from the command line
+	5.Run the program using the VM's broswer
+	__________________________________________________________
+
+
