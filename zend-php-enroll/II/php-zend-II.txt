@@ -1,0 +1,454 @@
+PHP BASICS
+
+This module covers
+
+	*PHP Scripts
+	*Comments
+	*Operators
+	*Variables and Constants
+	*Strings
+	*Arrays
+	*Best Practices
+
+Module Details
+
+This module teaches you the PHP basics. By the time you are finished, you will 
+undestand:
+s
+	*How to identify and build PHP scripts
+	*How to make your code more readable and simplify later maintenance
+	*How to define and use variables and constants to give your program code
+	maximum flexibility
+	*Understand and utile arrays to easily control lists of things important to
+	your programs
+
+PHP Scripts
+
+PHP scripts are created in standard text files and consist of:
+
+	*An opening tag <?php on the first line of the script 
+	*Are usually saved with the extension *.php
+	*One or more program code lines ending with a semi-colon(;)
+	*The closing tag (?>) is only need if you have HTML or Javascript 
+	following your PHP code
+
+Spaces, new lines and indentation is ignored by the PHP interpretes.
+
+See:
+https://www.php-fig.org/psr/psr-1/
+https://www.php-fig.org/psr/psr-12/
+Which are both PHP Standards Recomendations (PSRs).
+
+Comments
+
+Comments provide a way to clarify a code operation in plain text, Comments are
+ignored by the PHP parser.
+
+Ways to comment code:
+	
+	*Single Line
+	*Multi-line
+	*Doc Block
+
+Single Line Comment
+
+Single line comments are available, here are  two examples, one prior to some code, 
+another after a statememt:
+
+	// Assigning the two requires variables
+	$foo = 18;
+	$bar = 5;
+
+	echo $foo + $bar; // Output the sum inline comment
+
+Best practice: Limit comments to clarify only as needed.
+
+Multi-Line comment
+
+Multi-line comments are useful when more than one line is needed to clarify intent:
+
+/* The below assigns to vatiables 
+and then sums the two echoing the result */
+$foo = 10;
+$bar = 5;
+echo $foo + $bar;
+
+Doc Block Comment
+
+Doc block comments, like multi-line comments are intended to clarify, and are parsed
+by a comment parsing tool.
+
+use doc block comments prior to these constructs:
+	*Top code page dock block
+	*Class doc block
+	*function doc block
+/**
+ * This is a sum function
+ * @param $n1 the first number
+ * @param $n2 the second number
+ * @return The sum
+ */
+function sum($n1, $n2){
+  return $n1 + $n2;
+}
+
+Operator Types
+
+Operators
+
+Operators tell the parser how to handle and evaluate the code:
+
+	* Arithmetic: Defines arithmetic operation
+	* Assignment: Assigns a reference identifier to a memory value.
+	* Comparison: Used for value comparison.
+	* Increment/Decrement: Used to increment or decrement a value by one.
+	* Logical: Defines conditional evaluation.
+	* Array: Used for array analysis.
+
+NOTE: the string concatenation operator is discussed later.	
+
+Arihmetic
+EXAMPLES:
+echo 5 - 3; // 2 - subtraction operator
+echo 5 + 3; // 8 - addtion operator
+echo 5 * 3; // 15 - multiply operator
+echo 5 / 3; // 1.666666666667 - division operator
+echo 5 % 3; // 2 - module operator
+echo 5 ** 3; // 125 - exponent operator
+
+Assignment
+EXAMPLES:
+// Assigns a string
+$today = 'Friday';
+
+// Assigns the function return value
+$today = strtupper($today);
+
+
+Comparison
+EXAMPLES:
+
+$foo == $bar // true for equal values
+$foo === $bar // true for equal values and data types
+$foo != $bar // true for not equal values
+$foo !== $bar // true for not equal values and data types
+$foo > $bar // true for $foo numerically greater than $bar
+$foo >= $bar // true for $foo numerically greater or equal to $bar
+$foo < $bar // true for $foo numerically less than $bar
+$foo <= // true for $foo numerically less than o equal to $bar
+
+$foo <=> $bar // -1, 0, or 1 depending on respective values
+$foo = 5;
+$bar = 10;
+echo $foo <=> $bar; //-1
+
+Increment/Decrement
+EXAMPLES:
+$foo = 2;
+// pre-evaluation increment
+echo ++$foo; // $foo === 3
+
+// post-evaluation increment
+echo $foo++; // $foo === 4
+
+// pre-evaluation decrement
+echo --$foo; // $foo === 3
+
+// post-evaluation decrement
+echo $foo--; // $foo === 2
+
+// output: 3333
+
+Array
+EXAMPLES:
+$astronaut = ['Mark', 'Watney', 'Botanist'];
+print_r($astronaut); // Array(0 => Mark, 1 => Watney, 2 => Botanist)
+
+$astronaut = ['firstName' => 'Mark', 'lastName' => 'Watney', 'Specialty' => 'botanist'];
+print_r($astronaut);// Array(firstName => Mark, lastname => watney, Specialty => Botanist)
+
+$astronaut = ['Mark', 'Watney', 'Botanist'];
+echo $astronaut[2]; // Botanist
+
+Precedence
+
+Operator precedence pertains to evaluatio priority:
+//An example of simple math operator precence. with '*' higher in precedence table
+echo 1 + 5 * 3;
+
+Parenthesis force precedence
+//This evaluates and outputs 18
+echo (1 + 5) * 3;
+
+Variable and Constants
+
+Variable and constants are code elements that point to values in memory.
+
+Variable:
+A symbolic placeholder used to store and manipulate data, such as strings, integers,
+and arrays, in a PHP script.
+
+Constant:
+An immutable identifier used to store a fixed value, such as a string or number,
+which cannot be altered during the execution of a PHP script.
+
+A mutable value: 
+
+// Assigns a string to the $today variable.
+$today = 'Monday';
+$today = 'Tuesday';
+
+// Assigns an array construct to the $businessDays variable.
+$businessDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+A variable:
+
+	*Must begin with the "$" dollar sign.
+	*can start using either a lower case, an upper case letter, or underscore
+	character following the dollar sign, then any alpha-numeric character 
+	following.
+	*is case sensitive
+	*Has a defined execution scope, if you define a variable in a function,
+	 is locally to a that function, if you assign a variable into a class
+	 is a property is local for a that class.
+
+Constant
+A constant points to an immutable value stored in memory.
+//Assignment using the define() function
+define('PATH', 'some/path/location');
+
+//Assignment using the "const" keyword
+const PATH = 'some/path/location';
+
+//Ouputs the value identified by the constant 
+echo PATH; // some/path/location
+
+A constant:
+	*Can start with either a lower of upper case latter, or an undescore
+	character, then any alphanumeric character
+	*Is case sensitive
+	*Has a global execution scope which permits use anywhere in your code.*
+
+*The exception to this rule is when you use const. in which case the context where
+the constant is defined sets boundaries as to is scope.
+
+
+Predefined Constants
+
+Predefined or reserved constants are defined when PHP is first installed on a server.
+Examples of predefined constants:
+
+sPHP_VERSION The current PHP version as a string in "major.minor.release(extra)"notation.
+PHP_OS_FAMILY the operating system family PHP was built for. One of "Windows", "BSD",
+"Darwin", "Solaris", "Linux" or "Unknown".
+PHP_EOL The correct end-of-line symbol(e.g, \n for Linux/Mac, \r\n for Windows).
+PHP_INT_MAX The largest integer supported in this build of php, usually int(2147483647) in 32 bit systems and int(9223372036854775807) in 64 bit systems.
+PHP_FLOAT_MAX Largest representable floating point number.
+
+For the full List: 
+https://www.php.net/manual/en/reserved.constants.php
+
+Magic Constants
+
+The term magic used in programming context refers to semthing implicity defined, or
+executed. Magic constants are:
+
+__DIR__ Returns the root path to the current working directory.
+__FILE__ Returns the root path to the current file.
+__LINE__ Returns the current execution line.
+__FUNCTION__ Returns the current function name.
+__CLASS__ Returns the current class name.
+__TRAIT__ Returns the current trait name.
+__METHOD__ Returns the current method name.
+__NAMESPACE__ Returns the current namespace name.
+
+For the full List:
+https://www.php.net/manual/en/language.constants.magic.php
+
+Strings
+
+Construting Strings
+Strings are the most common data element used in code. Both single and double quotes
+are used.
+
+The single quote marks a literal string, while the double quote causes the parser to
+evaluate identifier values, this is called variable interpolation:
+
+//A single-quoted string use case
+$output = 'A single-quoted string';
+
+//A double-quoted string
+$dbl = "double-quoted";
+$output = "Here we are using a $dbl string";
+echo $output; // Output: here we are using a double-quoted string
+
+Concatenation Operator
+
+The dot(.) concatenation operator combines strings.
+
+Examples:
+
+$firstName = 'Mark;
+$lastName = 'Watney';
+echo $firstName . ' ' . $lastName; // Mark Watney -> more performatic because the php intepretor passes only one time 
+echo "$firstName $lastName"; // Mark Watney -> Minus perfomatic because the php interpretor passes only one
+
+// Combined concatenation
+$html = '<html>';
+$html .= '<head>';
+$html .= '</head>';
+$html .= '</html>';
+echo $html; // <html><head></head></html>
+
+Concatenation Operator Precedence
+
+The concatenation operator can concatenate to other operations using parentheses:
+$foo = 5;
+$bar = 10;
+echo 'sum: ' . $foo + $bar;
+
+//Evaluated left-to-right results fatal
+echo ('sum: ' . $foo) + $bar;
+
+//Math operations have higher precedence
+echo 'sum: ' . ($foo + $bar);
+
+IMPORTANT: The order of precedence for the concatenation operator has been demoted
+in PHP 8!
+
+More Information:
+https://wiki.php.net/rfc/concatenation_precedence
+
+
+Arrays
+
+Arrays are compound data storage organized by name/value pairs, Arrays are constructed
+to hold as much data as required and any type of data like sscalars, other arrays, 
+objects, ab arrays of objects.
+
+The array name element is called a key. Keys are used to access values.
+
+There are two types of arrays; numeric and associative. The first array has numeric 
+keys automatically assigned and results in a numeric array:
+
+// An astronaut array assigment
+$astronaut = ['Mark', 'Watney', 'Botanist'];
+
+Numeric value access
+
+Specify a key value number in a bracket notation to access a value.
+
+Associative Value Access
+
+Specify an associative name in bracket notation to access a value.
+
+Mixed Arrays
+
+Mixed arrays often have some keys explicitly assigned, others implicitly assigned:
+is a key is not explicitly assigned, the parser will assign the next higher value.
+
+//An astronaut array assignment
+$astronaut = ['firstName' => 'Mark', 5 => 'Watney', 'Botanist'];
+//Access the specialty value
+echo $astronaut['firstname'] . '<br>' . PHP_EOL;
+//Note: var_dump() is more detailed than "print_r()"
+var_dump($astronaut);
+// output:
+/*
+Mark<br>
+array(3){
+	["firstName"]=>
+	string(4) "Mark"
+	[5]=>
+	string(6) "Watney"
+	[6]=>
+	string(8) "Botanist"
+}
+*/
+
+Best Practice: Keep your indexes consistent. Don't mix associative and numeric indeces.
+
+Multi-Dimensional
+
+Arrays can be multi-dimensional and can have nested arrays as values:
+
+//Build the crew
+$mission = [
+	'STS395' => [
+		['firstName' => 'Mark', 'lastName' => 'Wetney', 'speciality' => 'Botanist'],
+		['firstName' => 'Mellisa', 'lastName' => 'Levis', 'speciality' => 'Comrander'],
+		['firstName' => 'Eduardo', 'lastName' => 'Carmo', 'speciality' => 'Computer Specialist'],
+
+	]
+];
+
+//Output all elements
+print_r($mission);
+
+Accessing Nested Values
+
+Accesing nested values of a multi-dimentsional array requires successive bracket notation
+	*The top array is associative and is accessible with the key STS395.
+	*The astronaut's sub array is numeric accessd by a numeric key 0,1, or 2.
+	*The Commander's last name is accesible via the sub-nested associative key lastName.
+
+//Access the commander's last name
+echo $mission['STS395'][1]['LastName']; //Levis
+
+//Display the specialty of Eduardo Carmo
+echo $mission['STS395'][2]['speciality'];
+
+String Array Value Access
+
+As shown, square brackets are used for accessing array elements, Accessing array values
+within string construction works well wrapping the array portion in curly braces:
+
+//An astronaur array assigment
+$astronaut = ['firstName' => 'Make', 'lastName' => 'Potato', 'speciality' => 'Farmer'];
+
+echo "{$astronaut['firstName']} {$astronaut['lastName']} Will initialy be left behind in Mars";
+
+Adding an value to a existing array is done with square bracket notation:
+//An astronaut array assignment
+$astronaut = ['firstName' => 'Mark', 'lastName' => 'Watney', 'speciality' => 'Botanist'];
+
+print_r($astronaut);
+echo '<br>';
+
+//Add a new associative element
+$astronaut['mission'] = 'STS395';
+
+//Add a new numeric element
+$astronaut[] = 'code red'; 
+print_r($astronaut);
+
+NOTE: is not recommended use the numeric element and associative alement in the same array
+i wanna make sure to keep your  keys consistent or associative arrays consistent.
+
+Best Practices
+
+These are coding best practices:
+
+	*Comment only when it clarifies -- do not comment easily readable code.
+	*Keep operator precedence order in mind when building expressions.(Use Parenthesis).
+	*Be careful using increment/decrement operators -- can result in hard to debug code.
+	*Start variable naming with a lower case letter, using camelCasing, or an
+	snake_case, to improve readability.
+	*Don't assign a variable identifier that is only used once.
+	*Create constants with all upper case letters to improve readability.
+	*Allow numeric keys to automatically be assigned if explicit keys are not
+	necessary.
+	*Indent to format multi-dimensional nested array structures.
+	*Use arrays as a container for common values.
+
+Module Summary
+ This module Included:
+
+	*PHP Scripts
+	*Comments
+	*Operators
+	*Variables and Constants
+	*Strings
+	*Arrays
+	*Best Practices
+
