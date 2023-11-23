@@ -1,0 +1,12 @@
+Module Details
+
+This module teaches you how to build interactive web forms using PHP, As you will see, the
+bigger pictures involves not just PHP, but also HTMO, CSS, and JavaScript. By the time you
+are finished, you will understand:
+	
+	*How to create dynamic and interactive web forms
+	*How PHP operates under the client/server model
+	*Whats is meant by "request" and "Response"
+	*How PHP and the web server interact
+	*Basic concepts of PHP security and how to protect your websites against attack
+	*How web form data is transmitted to and received by PHP
