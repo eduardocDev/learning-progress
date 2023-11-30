@@ -10,3 +10,57 @@ are finished, you will understand:
 	*How PHP and the web server interact
 	*Basic concepts of PHP security and how to protect your websites against attack
 	*How web form data is transmitted to and received by PHP
+
+Client/server model
+
+Client makes a request for a resource over a network protocol.
+Server processes request , consulting whatever resources are needed,
+and returns a response message.
+
+The transport mechanism is usually, but not always, the Hypertext Transfer
+Protocol(HTTP)
+
+The Uniform resource Locator (URL)
+
+The URL is an address of a web resource. THat resource is defined by either a domain name,
+like mars-express.com, or an internet protocol (IP) address like 64.74.192.10.
+
+The domain name is purchased by a domian registrar, and assgned to your web server's IP
+address. When entering a URL into a browser (client) location bar, a request is transmitted
+over protocol to the web server the domain name poits to:
+
+like :: http//mars-express.com?id=10&mission=STS395
+
+HTTP request
+
+A request has a few important parts:
+
+    * The wrapper or scheme: 'http://' 
+    * The domain: 'mars-express.com'
+    * The query string separator: '?'
+    * The query string (name=value pairs): id=10&mission=STS395
+    * The header: Metadata about the request itself, transmitted along with with the querystring part.
+
+HTTP Response
+
+A response has a couple of important parts:
+    * The data format: Usually a body of HTML markup.
+    * The header: Metadata about the response itself, transmitted along with the request body.
+    * The status code: A 3-digit integer code that identifies response status.
+
+HTTP Protocol
+
+important  aspects:
+    * A stateless protocol, meaning information is not maintained by either party in the communication between request/response cycles.
+    * Developed in late 1990s.
+    * Is a plain text protocol--no encyption take place.
+    * Has a variant--HTTPS--that does encrypt data in transport.
+    * Estabilishes a connection over Transmission Control Protocol (TCP)
+
+The Web Server
+
+By fat the most common use of PHP is as a web server extension, that means 
+a Web Server is passing request and response data to and from a PHP process running
+by a web server, The Web Server is responsible for intercepting request data and passing it along to the
+PHP process, and then taking the PHP response and passing it back to the client.
+
