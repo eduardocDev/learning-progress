@@ -124,3 +124,296 @@ It is common to embed PHP code into HTML markup:
         <input <?php foreach ($attribs as $key => $value) echo "$key=\"$value\" "; ?>/>
         </li>
     </ul> 
+
+HTML Forms and Processing
+Form, Fieldset, and Input tags
+
+HTML form s are the most common way to submit data to a web server applicatio. As such, it's
+recommend that you learn HTML forms and associated HTML markup thoroughtly.
+
+The form tag consist of a number of attributes including the name and method attribute. Here's an example
+
+<form action="html_form.php" mathod="POST">
+    <Fieldset>
+        <legend>Add Checklist Item</legend>
+        <label for="item">Enter the Checklist Item</label>
+        <input type="text" name="item" id="item">
+        <label for="priority">Enter the priority</label>
+        <input type="text" name="priority" id="priority">
+        <input type="submit" value="Submit">
+    </Fieldset>
+</form>
+
+Form Processing and Superglobals
+
+Processing a form submit involves obtaining the submitted form data initially from a PHP Super Global
+Array.
+
+PHP automatically populates varios Super Global arrays for the convenience of the developer. The important
+thing about data contained in Super Global arrays is that it is "RAW" data. Raw data is a major security issue
+with web applications as a whole, and we will discuss how to deal with this securoty issue a little later.
+
+Super Global arrays are considered "Super Global" as they are available within any application scope.
+
+Form Processing and Superglobals
+
+Here are the PHP Superglobal arrays
+
+    * $_GET: Contains HTTP GET method-submitted data.
+    * $_POST: Contains HTTP POST method-submitted data.
+    * $_SERVER: Contains requester header and web server variables.
+    * $_SESSION: Contains session data.
+    * $_FILES: Contains file data of files uploaded.
+    * $_COOKIE: Contains cookie data submitted in request headers.
+    * $_ENV: Contains environment data.
+ 
+Form Processing and Superglobals
+
+Code to process form data requites obtaining the data from either the $_GET 
+or $_POST array, Here's an example of obtaining form data.
+
+//Assume that "item" and "priority" have been posted from a form
+//Check for posted data and filter
+if(!empty($_POST)){
+    $item = $_POST['item'] ?? '';
+    $priority = $_POST['priority']?? '';
+    if(!empty($item) && !empty($priority)){
+        $item = filter_var(strip_tags($item), FILTER_SANITIZE_STRING);
+        $priority = (int) $priority;
+        echo 'Data is validated and sanitized, handle it ...';
+    }else{
+        echo 'Invalid input';
+        exit;
+    }
+}else{
+    // no form data has been posted
+}
+
+Form Processing and Superglobals
+
+Putting it all together with the form built from configuration using functions.
+
+require_once 'forms.php';
+$config = require 'config.php';
+
+// Check for posted data and filter
+if(empty($_POST)){
+    //Get the form
+    echo getForm($config, 'add_item');
+}else{
+    $item = $_POST['item']?? '';
+    $priority = $_POST['priority']?? '';
+    if(!empty($item)&& !empty($priority)){
+        $item = filter_var(strip_tags($item), FILTER_SANITIZE_STRING);
+        $priority = (int) $priority;
+        echo 'Data is validated and sanitized, handle it ...';
+    }else{
+        echo 'Invalid input';
+    }
+}
+
+Security
+
+Security is a very large concern for web applications, and one that warrants
+much more consideration then provided in this class.
+
+Any attempt to make light of security is highly short-sighted, but a few fundamentals are discussed
+here.
+
+Important Terms 
+
+Input: Data that enters your application from another source outside.
+Injection: Tainted data dalibarately submitted to an application from an outside source.
+Filtering: Action taken to test for injected data.
+Validation: Action taken to confirm the correct data.
+Sanitization: Action taken to test for injected data and cleaning.
+Escaping: Action taken on input data before sending it back out.
+
+Input Filtering
+
+Input data coming into your application from an outside source should be looked at from a 
+perspective of distrust.
+
+Input data from the outside includes:
+
+    * User data via a form submit request.
+    * One or more database stores.
+    * Web service requests.
+    * Any source not directly coded in your application.
+
+Input Filtering 
+
+Filters return either the value passed in or false if the data does not pass.
+
+Including bad content that is:
+
+    * Deliberately submitted with the content to exploit an application weakness
+    * Stored in a database.
+    * embedded in a librrary or extension.
+    * Delivered by a web service.
+
+Input Filter Functions 
+
+Filter functions libraries include:
+
+    * Filter
+    * Ctype
+    * String
+    * Array
+
+Input Finter Functions 
+
+//using Filter_var():
+
+function checkYear($year){
+    return (filter_var($year, FILTER_VALIDATE_INT))
+    ? (bool) $year
+    : FALSE;
+}
+
+echo checkYear(2016) ? 'VALID' : 'INVALID', '<br>';
+echo checkYear('ABCD') ? 'VALID' : 'INVALID';
+
+//Using ctype_alpha():
+
+$firstname = 'Mark';
+if(ctype_alpha($firstname)){
+    echo 'Clean first name';
+} else {
+    echo 'invalid';
+}
+
+//Using strip_tags():
+
+$firstname = "<script>alert('document,cookie')</script>";
+echo strip_tags($firstname);
+
+Input Filter Functions 
+
+Using in_array():
+
+$year = 2017;
+$allowed = range(date('Y') - 2, date('Y') + 4);
+
+if(in_array($year, $allowed)){
+    echo $year;
+} else {
+    echo 'invalid';
+}
+
+this technique is considered white listing. White listing olny allows disignated inputs, black listing
+attempts to block known inputs, and is not recommended or manageable.
+
+Input Validation
+
+Input validation determines whether in input value is a correct value for the type of input expected.
+
+Depending on the data, input validation may be satisfied by filtering code, other times it is explicitly 
+handled.
+
+Input Validation
+
+Example:
+
+$year = 2016;
+$max = 2020;
+$min = 2010;
+
+if($min < $year && $year < $max){
+    echo $year;
+}else{
+    echo 'invalid';
+}
+
+Input Sanitization
+
+Input sanitization attempts to remove anything that does not meet a certain criteria. Return the
+data passed in and invalid character(s) removeddd.
+
+Input sanitization
+
+FILTER_VALIDATE_EMAIL: Validates e-mail addresses (comment and whitespace folding are note supported)
+
+FILTER_SANITIZE_EMAIL: Removes all characters except letters, digits and !#$%&'*+-=?^_'{|}-@.[]
+
+$emailAddress = 'b(o)b@example.com';
+
+if (filter_var($emailAddress, FILTER_VALIDATE_EMAIL)){
+    echo $emailAddress . 'seems legit </br>';
+}else {
+    echo filter_var( $emailAddress, FILTER_SANITIZE_EMAIL);
+}
+
+Output Escaping 
+
+Escaping is removing dangerious characters from input that is intended to output. It is a second
+prong approach to data security in addtion to input filtering and validation. Escaping deals with output.
+
+Applicable Tools and techniques:
+
+    * htmlspecialchars()
+    * htmlentities()
+    * Framework escaping mechanisms.
+    * XML and JSON encoding.
+
+using htmlspecialchars();
+
+$year = 'year2016';
+$allowed = range(2014, 2020);
+
+if(in_array($year, $allowed)){
+    echo (int) $year;
+} else {
+    echo htmlspecialchars($year) . ' is invalid';
+}
+
+Best Practices
+
+Security best practices:
+
+    * Always escape output to any destination, including to web service, to a user, and to database stores.
+    * Most modern frameworks include some auto-escaping of output.
+    * Escape minimally with htmlspecialchars().
+    * Encode output withh functions for XML or JSON.
+    * Learn as much as you can about security.
+
+Data Trasnport Over HTTP
+
+Data trasnmitted over HTTP to a remote server will use following methods:
+
+ * GET
+ * POST
+ * PUT 
+ * PATCH
+ * DELETE
+ * HEAD 
+ * OPTIONS 
+ * connection
+ 
+ This course focuses on the methods GET and POST.
+
+ GET HTTP Method 
+
+ The GET is the most commin method used to trasnmit data:
+
+    * It Contains server variables on a URL string following the "?" mark, example:
+    http://example.com/index.php?component=user&action=update&view=user
+    * Requests are subject to a URL yte count length limitation.
+    * It makes browser bookmarking is possible because the server variables are available.
+
+POST Method
+
+The POST method is also used to trasnmit data:
+
+    * It contains server variables in the HTTP header.
+    * It is not good for bookmarking without server variables on a URL.
+    * It is best used for web form data as that is not limited by byte count length.
+Lab: Secure Input Handling
+
+Complete the following: 
+
+    1. Create a simple HTML user signup form with these fields: email address, username, password.
+    2. Create a script that takes input from the signup form.
+    3. Filter and validate all inputs.
+    4. Display a message for invalid inputs or a success message if validation succeeds.
+
